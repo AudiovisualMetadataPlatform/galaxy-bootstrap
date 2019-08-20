@@ -4,7 +4,7 @@
   <groupId>com.github.jmchilton.galaxybootstrap</groupId>
   <artifactId>galaxybootstrap</artifactId>
   <packaging>jar</packaging>
-  <version>0.7.1-SNAPSHOT</version>
+  <version>0.7.1</version>
   <name>galaxy-bootstrap</name>
   <description />
   <parent>
@@ -13,13 +13,13 @@
     <version>7</version>
   </parent>
   <scm>
-    <connection>scm:git:git@github.com:jmchilton/galaxy-bootstrap.git</connection>
-    <developerConnection>scm:git:git@github.com:jmchilton/galaxy-bootstrap.git</developerConnection>
-    <url>git@github.com:jmchilton/galaxy-bootstrap.git</url>
+    <connection>scm:git:git@github.com/AudiovisualMetadataPlatform/galaxy-bootstrap.git</connection>
+    <developerConnection>scm:git:git@ggithub.com/AudiovisualMetadataPlatform/galaxy-bootstrap.git</developerConnection>
+    <url>git@github.com/AudiovisualMetadataPlatform/galaxy-bootstrap.gitt</url>
   </scm>
   <issueManagement>
     <system>Github</system>
-    <url>http://github.com/jmchilton/galaxy-bootstrap/issues</url>
+    <url>http://github.com/AudiovisualMetadataPlatform/galaxy-bootstrap/issues</url>
   </issueManagement>
   <licenses>
     <license>
@@ -104,54 +104,8 @@
       </plugin>
     </plugins>
   </reporting>
-  <profiles>
-    <profile>
-      <id>release-sign-artifacts</id>
-      <activation>
-        <property>
-          <name>performRelease</name>
-          <value>true</value>
-        </property>
-      </activation>
-      <build>
-        <plugins>
-          <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-gpg-plugin</artifactId>
-            <version>1.4</version>
-            <executions>
-              <execution>
-                <id>sign-artifacts</id>
-                <phase>verify</phase>
-                <goals>
-                  <goal>sign</goal>
-                </goals>
-              </execution>
-            </executions>
-          </plugin>
-        </plugins>
-      </build>
-    </profile>
-  </profiles>
   <build>
-    <plugins>
-      <plugin>
-        <groupId>com.github.github</groupId>
-        <artifactId>site-maven-plugin</artifactId>
-        <version>0.9</version>
-        <configuration>
-          <message>Creating site for ${project.version}</message>
-        </configuration>
-        <executions>
-          <execution>
-            <goals>
-              <goal>site</goal>
-            </goals>
-            <phase>site</phase>
-          </execution>
-        </executions>
-      </plugin>
-    </plugins>
+
     <pluginManagement>
       <plugins>
         <plugin>
@@ -163,15 +117,7 @@
             <compilerArgument />
           </configuration>
         </plugin>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-release-plugin</artifactId>
-          <configuration>
-            <preparationGoals>clean install verify</preparationGoals>
-            <goals>clean install javadoc:jar source:jar gpg:sign verify deploy</goals>
-            <arguments>-Dmaven.test.skip=true</arguments>
-          </configuration>
-        </plugin>
+
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-source-plugin</artifactId>

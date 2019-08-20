@@ -6,7 +6,6 @@ bunch.session = sa_session
 # For backward compatibility with "model.context.current"
 bunch.context = sa_session
 security_agent = GalaxyRBACAgent( bunch )
-security_agent.sa_session = sa_session
 
 def add_user(email, password, key=None):
     query = sa_session.query( User ).filter_by( email=email )

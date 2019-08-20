@@ -82,16 +82,27 @@ public class BootStrapper {
     }
     
     logger.info("Starting setup of Galaxy, logDir=" + bootstrapLogDir);
+
+    executeGalaxyScript("echo $PATH > "
+            + buildLogPath(bootstrapLogDir,"path.log") + " 2>&1");
+
+    executeGalaxyScript("which python > "
+            + buildLogPath(bootstrapLogDir,"which.log") + " 2>&1");
+
+    executeGalaxyScript("ls -la `which python` >"
+            + buildLogPath(bootstrapLogDir,"py.log") + " 2>&1");
+
+
     galaxyProperties.configureGalaxy(getRoot());
 
     if(galaxyProperties.shouldConfigureVirtualenv()) {
       executeGalaxyScript("virtualenv .venv");
     }
 
-    if (!galaxyProperties.isPre20141006Release(getRoot())) {
-      executeGalaxyScript("sh scripts/common_startup.sh 1> " 
+
+      executeGalaxyScript("sh scripts/common_startup.sh 1> "
           + buildLogPath(bootstrapLogDir,"common_startup.log") + " 2>&1");
-    }
+
     
     if(galaxyProperties.isCreateDatabaseRequired()) {
       executeGalaxyScript("sh create_db.sh 1> " 
@@ -99,16 +110,17 @@ public class BootStrapper {
     }
 
     if(galaxyData != null) {
-      executeGalaxyScript("sh manage_db.sh -c config/galaxy.ini upgrade 1> "
+      executeGalaxyScript("sh manage_db.sh  upgrade 1> "
         + buildLogPath(bootstrapLogDir,"upgrade_db.log") + " 2>&1");
       galaxyData.writeSeedScript(new File(getRoot(), "seed.py"));
       executeGalaxyScript("python seed.py 1> " 
         + buildLogPath(bootstrapLogDir,"seed.log") + " 2>&1");
     }
+
     logger.info("Galaxy setup complete");
     
     logger.info("Running Galaxy on " + galaxyProperties.getGalaxyURL());
-    IoUtils.execute("sh", new File(getPath(), "run.sh").getAbsolutePath(), "--daemon");
+    IoUtils.execute("sh", new File(getPath(), "run.sh").getAbsolutePath(), " --daemon");
     return new GalaxyDaemon(galaxyProperties, getRoot(), this);
   }
   

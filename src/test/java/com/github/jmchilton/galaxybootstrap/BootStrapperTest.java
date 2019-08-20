@@ -20,7 +20,7 @@ public class BootStrapperTest {
    * @throws InterruptedException
    * @throws IOException
    */
-  @Test
+  @Test(enabled=false)
   public void testSetup() throws InterruptedException, IOException {
     final BootStrapper bootStrapper = new BootStrapper();
 
@@ -41,9 +41,9 @@ public class BootStrapperTest {
    * @throws IOException
    * @throws InterruptedException
    */
-  @Test
+  @Test(enabled=false)
   public void testSpecificRelease() throws InterruptedException, IOException {
-    String release = "v17.01";
+    String release = "master";
     final BootStrapper bootStrapper = new BootStrapper(
             DownloadProperties.forRelease(release));
 
@@ -57,10 +57,10 @@ public class BootStrapperTest {
    * @throws IOException 
    * @throws InterruptedException 
    */
-  @Test
+  @Test(enabled=false)
   public void testSpecificCommit() throws InterruptedException, IOException {
     // release_17.05 on 2017-10-19 at https://github.com/galaxyproject/galaxy
-    final String expectedCommit = "f0e9767912f91932d3541a3e824ebe026648cbf6";
+    final String expectedCommit = "e5e98cc2d46e6d71fc162831bb65046a33551dce";
     final BootStrapper bootStrapper = new BootStrapper(
       DownloadProperties.forLatestReleaseAtCommit(expectedCommit));
     
@@ -78,7 +78,7 @@ public class BootStrapperTest {
    * @throws IOException 
    * @throws InterruptedException 
    */
-  @Test
+  @Test(timeOut=3000000)
   public void testGithubMasterBranch() throws InterruptedException, IOException {
     final BootStrapper bootStrapper = new BootStrapper(DownloadProperties.gitGithubMaster());
 
@@ -86,7 +86,7 @@ public class BootStrapperTest {
 
     bootStrapper.deleteGalaxyRoot();
   }
-  
+
   /**
    * Tests Galaxy for a specific setup.
    * @param bootStrapper  The BootStrapper used for setting up Galaxy.

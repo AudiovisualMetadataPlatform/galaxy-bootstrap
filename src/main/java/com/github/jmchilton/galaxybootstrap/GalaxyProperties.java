@@ -82,8 +82,9 @@ public class GalaxyProperties {
   }
   
   public GalaxyProperties assignFreePort() {
-    port = IoUtils.findFreePort();
-    serverProperties.put("port", Integer.toString(port));
+    //port = IoUtils.findFreePort();
+    //serverProperties.put("port", Integer.toString(port));
+    port = 8080;
     galaxyURL = adjustGalaxyURL(port);
     return this;
   }
@@ -131,7 +132,7 @@ public class GalaxyProperties {
     }
     
     File configDirectory = new File(galaxyRoot, CONFIG_DIR_NAME);
-    return !(new File(configDirectory, "galaxy.ini.sample")).exists();
+    return !(new File(configDirectory, "galaxy.yml.sample")).exists();
   }
   
   /**
@@ -140,12 +141,9 @@ public class GalaxyProperties {
    * @return  A File object for the sample config ini for Galaxy.
    */
   private File getConfigSampleIni(File galaxyRoot) {
-    if (isPre20141006Release(galaxyRoot)) {
-      return new File(galaxyRoot, "universe_wsgi.ini.sample");
-    } else {
       File configDirectory = new File(galaxyRoot, CONFIG_DIR_NAME);
-      return new File(configDirectory, "galaxy.ini.sample");
-    }
+      return new File(configDirectory, "galaxy.yml");
+
   }
   
   /**
@@ -154,12 +152,10 @@ public class GalaxyProperties {
    * @return  A File object for the config ini for Galaxy.
    */
   private File getConfigIni(File galaxyRoot) {
-    if (isPre20141006Release(galaxyRoot)) {
-      return new File(galaxyRoot, "universe_wsgi.ini");
-    } else {
+
       File configDirectory = new File(galaxyRoot, CONFIG_DIR_NAME);
-      return new File(configDirectory, "galaxy.ini");
-    }
+      return new File(configDirectory, "galaxy.yml");
+
   }
   
   /**
@@ -220,6 +216,9 @@ public class GalaxyProperties {
 
       File sampleIni = getConfigSampleIni(galaxyRoot);
       File configIni = getConfigIni(galaxyRoot);
+      // TODO: parse yml file here
+
+      /*
       final Ini ini = new Ini(new FileReader(sampleIni));
       final Section appSection = ini.get("app:main");
       final boolean toolsConfigured = appProperties.containsKey("tool_config_file");
@@ -233,12 +232,13 @@ public class GalaxyProperties {
       // with tool migration framework.
       if(!appProperties.containsKey("running_functional_tests")) {
         appProperties.put("running_functional_tests", "true");
-      }              
+      }
+
       dumpMapToSection(appSection, appProperties);
       final Section serverSection = ini.get("server:main");
       dumpMapToSection(serverSection, serverProperties);
       ini.store(configIni);
-      
+      */
       final File databaseDirectory = new File(galaxyRoot, "database");
       final File sqliteDatabase = new File(databaseDirectory, "universe.sqlite");
       if(this.database.isPresent()) {

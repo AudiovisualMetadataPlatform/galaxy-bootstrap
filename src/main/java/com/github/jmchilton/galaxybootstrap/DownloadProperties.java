@@ -22,22 +22,17 @@ public class DownloadProperties {
   private static final Logger logger = LoggerFactory
   		.getLogger(DownloadProperties.class);
 
-  public static final String GITHUB_ZIP_URL = "https://github.com/galaxyproject/galaxy/archive/";
+  public static final String GITHUB_ZIP_URL = "https://github.com/AudiovisualMetadataPlatform/galaxy/archive/";
   public static final String GITHUB_ZIP_MASTER_URL = GITHUB_ZIP_URL+ "master";
-  public static final String GALAXY_GITHUB_REPOSITORY_URL = "https://github.com/galaxyproject/galaxy.git";
+  public static final String GALAXY_GITHUB_REPOSITORY_URL = "https://github.com/AudiovisualMetadataPlatform/galaxy.git";
   public static final String GALAXY_DIST_REPOSITORY_URL = "https://bitbucket.org/galaxy/galaxy-dist";
   public static final String GALAXY_CENTRAL_REPOSITORY_URL = "https://bitbucket.org/galaxy/galaxy-central";
   public static final String BRANCH_STABLE = "stable";
   public static final String BRANCH_DEFAULT = "default";
   public static final String BRANCH_MASTER= "master";
-  public static final String BRANCH_RELEASE_17_01 = "release_17.01";
-  public static final String BRANCH_RELEASE_17_05 = "release_17.05";
-  public static final String BRANCH_RELEASE_17_09 = "release_17.09";
-  public static final String TAG_RELEASE_17_01 = "v17.01";
-  public static final String TAG_RELEASE_17_05 = "v17.05";
-  public static final String TAG_RELEASE_17_09 = "v17.09";
-  public static final String BRANCH_RELEASE_LATEST = BRANCH_RELEASE_17_09;
-  public static final String TAG_RELEASE_LATEST = TAG_RELEASE_17_09;
+  public static final String TAG_RELEASE = "v19.01";
+  public static final String BRANCH_RELEASE_LATEST = BRANCH_MASTER;
+  public static final String TAG_RELEASE_LATEST = TAG_RELEASE;
 
   /**
    * Defines a constant for specifying that Galaxy should be downloaded with the latest commit.
